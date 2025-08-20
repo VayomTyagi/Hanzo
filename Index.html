@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hancenzo - Creative Video Editor</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="loader-container">
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+            <div class="loader-text">Loading</div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop preload="auto">
+        <source src="assets/music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Music Control Button -->
+    <div class="music-control">
+        <button id="musicToggle" type="button" title="Toggle Background Music">
+            <i class="fas fa-volume-up"></i>
+        </button>
+    </div>
+
+    <!-- Particle Background System -->
+    <div class="particle-container" id="particleContainer"></div>
+
+    <!-- Geometric Background -->
+    <div class="geometric-bg">
+        <div class="geo-shape"></div>
+        <div class="geo-shape"></div>
+        <div class="geo-shape"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a class="logo" href="#">Hancenzo</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#showreel">Showreel</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu" type="button">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Panel -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="close-mobile" type="button">&times;</button>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#showreel">Showreel</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Hancenzo</h1>
+            <h2 class="hero-subtitle">
+                <span class="typewriter" id="typewriter"></span>
+            </h2>
+            <p class="hero-tagline">Crafting cinematic stories that captivate and inspire</p>
+            <div class="hero-cta">
+                <a class="cta-button cta-blue" href="#projects">
+                    <i class="fas fa-play"></i>View My Work
+                </a>
+                <a class="cta-button cta-primary" href="#contact">
+                    <i class="fas fa-envelope"></i>Let's Collaborate
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about fade-in" id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I'm a passionate <span class="highlight">video editor</span> with over 3 years of experience crafting compelling visual stories. My expertise spans across <span class="highlight">commercial advertising</span>, <span class="highlight">music videos</span>, <span class="highlight">documentaries</span>, and <span class="highlight">social media content</span>.</p>
+                <p>I believe every frame tells a story, and my mission is to bring your vision to life through <span class="highlight">dynamic editing</span>, <span class="highlight">color grading</span>, and <span class="highlight">motion graphics</span>. From concept to final delivery, I ensure every project exceeds expectations.</p>
+                <p>When I'm not behind the screen, you'll find me exploring new cinematographic techniques, studying the latest trends in visual storytelling, and pushing the boundaries of creative expression.</p>
+            </div>
+            <div class="about-image">
+                <img alt="Alex Chen - Video Editor" src="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'&gt;&lt;defs&gt;&lt;linearGradient id='grad1' x1='0%' y1='0%' x2='100%' y2='100%'&gt;&lt;stop offset='0%' style='stop-color:%23ff6a00;stop-opacity:0.8' /&gt;&lt;stop offset='100%' style='stop-color:%2300d4ff;stop-opacity:0.8' /&gt;&lt;/linearGradient&gt;&lt;/defs&gt;&lt;rect fill='%23111' width='500' height='500'/&gt;&lt;circle cx='250' cy='200' r='80' fill='url(%23grad1)'/&gt;&lt;rect x='180' y='320' width='140' height='120' rx='20' fill='url(%23grad1)'/&gt;&lt;circle cx='200' cy='150' r='15' fill='%23fff' opacity='0.8'/&gt;&lt;circle cx='300' cy='150' r='15' fill='%23fff' opacity='0.8'/&gt;&lt;rect x='220' y='180' width='60' height='4' fill='%23fff' opacity='0.6'/&gt;&lt;text x='250' y='480' text-anchor='middle' fill='%23fff' font-size='18' font-family='Arial'&gt;Professional Editor&lt;/text&gt;&lt;/svg&gt;"/>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showreel Section -->
+    <section class="section showreel fade-in" id="showreel">
+        <h2 class="section-title">Showreel</h2>
+        <div class="video-container" onclick="playShowreel()">
+            <div class="video-placeholder">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showreel Modal -->
+    <div class="modal" id="showreelModal">
+        <button class="close" onclick="closeShowreel()" style="
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: none;
+            z-index: 3000;
+            background: none;
+            border: none;
+        ">&times;</button>
+        <div class="modal-content" style="max-width: 900px; padding: 0; overflow: hidden;">
+            <iframe 
+                id="showreelPlayer" 
+                width="100%" height="500"
+                frameborder="0"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+            ></iframe>
+        </div>
+    </div>
+
+    <!-- Projects Section -->
+    <section class="section fade-in" id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card" onclick="openModal('project1')">
+                <div class="project-thumbnail">
+                    <i class="fas fa-video" style="font-size: 3rem; color: var(--primary-orange); opacity: 0.5;"></i>
+                </div>
+                <div class="project-overlay">
+                    <i class="fas fa-play project-play-icon"></i>
+                    <h3>.EXE Format Videos</h3>
+                    <p>Montages Or Funny Moments compilation Videos</p>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">.EXE Format Videos</h3>
+                    <p class="project-description">Montages Or Funny Moments compilation Videos</p>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('project2')">
+                <div class="project-thumbnail">
+                    <i class="fas fa-music" style="font-size: 3rem; color: var(--accent-cyan); opacity: 0.5;"></i>
+                </div>
+                <div class="project-overlay">
+                    <i class="fas fa-play project-play-icon"></i>
+                    <h3>GMVs / AMVs Edits</h3>
+                    <p>Videos with most use of Transitions, Effects and Color Grading.</p>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">GMVs / AMVs Edits</h3>
+                    <p class="project-description">Videos with most use of Transitions, Effects and Color Grading.</p>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('project3')">
+                <div class="project-thumbnail">
+                    <i class="fas fa-film" style="font-size: 3rem; color: var(--accent-purple); opacity: 0.5;"></i>
+                </div>
+                <div class="project-overlay">
+                    <i class="fas fa-play project-play-icon"></i>
+                    <h3>Urban Stories Documentary</h3>
+                    <p>Award-winning documentary about city life and culture</p>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Urban Stories Documentary</h3>
+                    <p class="project-description">Award-winning documentary exploring the rich tapestry of urban life and cultural diversity in modern cities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills fade-in" id="skills">
+        <h2 class="section-title">Skills & Tools</h2>
+        <div class="skills-grid">
+            <!-- Alight Motion -->
+            <div class="skill-card">
+                <img src="assets/alightmotion.svg" alt="Alight Motion" class="skill-icon-img">
+                <h3 class="skill-name">Alight Motion</h3>
+                <div class="skill-progress" data-width="98"></div>
+                <span class="skill-percentage">98%</span>
+            </div>
+
+            <!-- After Effects -->
+            <div class="skill-card">
+                <img src="assets/after-effects.svg" alt="After Effects" class="skill-icon-img">
+                <h3 class="skill-name">After Effects</h3>
+                <div class="skill-progress" data-width="95"></div>
+                <span class="skill-percentage">95%</span>
+            </div>
+
+            <!-- Premiere Pro -->
+            <div class="skill-card">
+                <img src="assets/premiere-pro.svg" alt="Premiere Pro" class="skill-icon-img">
+                <h3 class="skill-name">Premiere Pro</h3>
+                <div class="skill-progress" data-width="75"></div>
+                <span class="skill-percentage">75%</span>
+            </div>
+
+            <!-- DaVinci Resolve -->
+            <div class="skill-card">
+                <img src="assets/davinci.svg" alt="DaVinci Resolve" class="skill-icon-img">
+                <h3 class="skill-name">DaVinci Resolve</h3>
+                <div class="skill-progress" data-width="75"></div>
+                <span class="skill-percentage">75%</span>
+            </div>
+
+            <!-- Photoshop -->
+            <div class="skill-card">
+                <img src="assets/photoshop.svg" alt="Photoshop" class="skill-icon-img">
+                <h3 class="skill-name">Photoshop</h3>
+                <div class="skill-progress" data-width="60"></div>
+                <span class="skill-percentage">60%</span>
+            </div>
+
+            <!-- Sound Design -->
+            <div class="skill-card">
+                <i class="fa-solid fa-headphones skill-icon"></i>
+                <h3 class="skill-name">Sound Design</h3>
+                <div class="skill-progress" data-width="80"></div>
+                <span class="skill-percentage">80%</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact fade-in" id="contact">
+        <h2 class="section-title">Let's Create Together</h2>
+        <div class="contact-content">
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-gray);">Ready to bring your vision to life? Let's discuss your next project and create something extraordinary together.</p>
+            <form action="https://formspree.io/f/xjkolqnq" class="contact-form" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <input name="name" placeholder="Your Name" required="" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        <input name="email" placeholder="Your Email" required="" type="email"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="Tell me about your project..." required=""></textarea>
+                </div>
+                <button class="submit-btn" type="submit">
+                    <i class="fas fa-paper-plane" style="margin-right: 0.5rem;"></i>
+                    Send Message
+                </button>
+            </form>
+
+            <div class="social-links">
+                <a class="social-link" href="https://www.youtube.com/@hancenzo21" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a class="social-link" href="https://www.instagram.com/hancenz0" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a class="social-link" href="https://open.spotify.com/user/31vbefgsv2jp2rlnpvf4vadzhina?si=640f717339b74dc3" title="Spotify">
+                    <i class="fab fa-spotify"></i>
+                </a>
+                <a class="social-link" href="https://guns.lol/hancenzo" title="Discord">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+                <a class="social-link" href="mailto:drkvnmx7@gmail.com" title="E-mail">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Hancenzo. All rights reserved. Crafted with passion for visual storytelling.</p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a class="back-to-top" href="#home">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Modal -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <button class="close" type="button">&times;</button>
+            <div id="modal-body">
+                <!-- Modal content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
