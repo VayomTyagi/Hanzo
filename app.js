@@ -141,69 +141,63 @@ function updateMusicButton(isPlaying) {
     }
 }
 
+
 // Optimized Custom cursor with throttling
 function initCursor() {
     const cursor = document.querySelector('.cursor');
     const cursorFollower = document.querySelector('.cursor-follower');
-    
     if (!cursor || !cursorFollower) return;
 
     let mouseX = 0, mouseY = 0;
     let followerX = 0, followerY = 0;
 
-    function updateCursor(e) {
-        const now = Date.now();
-        if (now - lastCursorUpdate < cursorUpdateInterval) return;
-        
+    // track mouse instantly
+    document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-        
-        cursor.style.left = mouseX + 'px';
-        cursor.style.top = mouseY + 'px';
-        
-        lastCursorUpdate = now;
+    });
+
+    function animateCursor() {
+        // small dot (centered)
+        cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+
+        // follower smoothly interpolates (centered)
+        followerX += (mouseX - followerX) * 0.18;
+        followerY += (mouseY - followerY) * 0.18;
+        cursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%)`;
+
+        requestAnimationFrame(animateCursor);
     }
 
-    function animateFollower() {
-        followerX += (mouseX - followerX) * 0.1;
-        followerY += (mouseY - followerY) * 0.1;
+    animateCursor();
 
-        // Only update if not in video mode
-        if (!isVideoPlaying) {
-            cursorFollower.style.left = followerX + 'px';
-            cursorFollower.style.top = followerY + 'px';
-        }
-
-        rafId = requestAnimationFrame(animateFollower);
-    }
-
-
-
-    document.addEventListener('mousemove', updateCursor);
-    
+    // click effect
     document.addEventListener('mousedown', () => {
         cursor.classList.add('click');
         clearTimeout(cursorTimeout);
         cursorTimeout = setTimeout(() => cursor.classList.remove('click'), 200);
     });
 
-    // Cursor effects on interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-card, input, textarea, .video-container');
-    
+    // interactive hover effects
+    const interactiveElements = document.querySelectorAll(
+        'a, button, .project-card, .skill-card, input, textarea, .video-container'
+    );
+
     interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
             cursor.classList.add('hover');
-            cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.3)';
+            cursorFollower.style.transition = 'transform 0.2s ease';
+            cursorFollower.style.transform += ' scale(1.3)';
         });
-        
+
         el.addEventListener('mouseleave', () => {
             cursor.classList.remove('hover');
-            cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursorFollower.style.transition = 'transform 0.2s ease';
+            cursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%) scale(1)`;
         });
     });
-
-    animateFollower();
 }
+
 
 // Optimized particle system
 function initParticles() {
@@ -661,3 +655,23 @@ if (document.readyState === 'loading') {
 }
 
 console.log('🎬 Hancenzo Portfolio loaded successfully!');
+
+
+
+// Global View Counter with countapi.xyz
+window.addEventListener("load", () => {
+    const viewCounter = document.getElementById("viewCounter");
+    if (viewCounter) {
+        fetch("https://api.api-ninjas.com/v1/counter?id=site-views&hit=true", {
+            headers: { "X-Api-Key": "x2Kdjv0YvZ8GR2W1Rj+6GQ==CApKY7ixj3THIHsA" }
+        })
+            .then(res => res.json())
+            .then(data => {
+                viewCounter.textContent = `Views: ${data.value}`;
+            })
+            .catch(() => {
+                viewCounter.textContent = "Views: N/A";
+            });
+    }
+});
+
