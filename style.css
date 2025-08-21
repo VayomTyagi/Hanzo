@@ -444,17 +444,24 @@ body.video-playing .scroll-indicator {
 
 #viewCounter {
     position: fixed;
-    top: 1rem;
-    left: 1rem;
+    top: 100px;           /* aligned with music button */
+    left: 7rem;           /* sits to the right of it */
     background: rgba(20, 20, 20, 0.7);
     padding: 0.5rem 1rem;
     border-radius: 8px;
     font-family: 'Orbitron', monospace;
     font-size: 1.2rem;
     color: var(--primary-orange);
-    z-index: 3000;
+    z-index: 1000;
     backdrop-filter: blur(10px);
+    transition: opacity 0.4s ease, visibility 0.4s ease;
 }
+
+#viewCounter.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
 
 
 /* Hero Section */
