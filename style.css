@@ -220,6 +220,7 @@ body.video-playing .scroll-indicator {
     text-decoration: none;
     position: relative;
     overflow: hidden;
+    cursor: None;
 }
 
 .logo::before {
@@ -1260,6 +1261,7 @@ body.video-playing .scroll-indicator {
     z-index: 1000;
     box-shadow: 0 8px 20px rgba(255, 106, 0, 0.3);
     transform: translateZ(0);
+    cursor: None;
 }
 
 .back-to-top.visible {
@@ -1536,4 +1538,5 @@ box-shadow: none !important;
 .skill-progress[data-width="75"]::before { width: 75%; }
 .skill-progress[data-width="60"]::before { width: 60%; }
 .skill-progress[data-width="80"]::before { width: 80%; }
+
 
