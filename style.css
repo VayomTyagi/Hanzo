@@ -256,6 +256,7 @@ body.video-playing .scroll-indicator {
     transition: var(--transition);
     position: relative;
     padding: 0.5rem 0;
+    cursor: None;
 }
 
 .nav-links a::before {
@@ -1535,3 +1536,4 @@ box-shadow: none !important;
 .skill-progress[data-width="75"]::before { width: 75%; }
 .skill-progress[data-width="60"]::before { width: 60%; }
 .skill-progress[data-width="80"]::before { width: 80%; }
+
