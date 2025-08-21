@@ -675,3 +675,19 @@ window.addEventListener("load", () => {
     }
 });
 
+// Hide view counter on scroll for mobile
+window.addEventListener("scroll", () => {
+    const viewCounter = document.getElementById("viewCounter");
+
+    if (window.innerWidth <= 768) { // mobile only
+        if (window.scrollY > 10) {
+            viewCounter.classList.add("hide");
+        } else {
+            viewCounter.classList.remove("hide");
+        }
+    } else {
+        viewCounter.classList.remove("hide"); // always visible on desktop
+    }
+});
+
+
