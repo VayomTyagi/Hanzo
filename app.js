@@ -423,7 +423,7 @@ function openModal(projectId) {
                                 Let's discuss how I can bring your vision to life with the same level of creativity and professionalism.
                             </p>
                             <a href="#contact" onclick="closeModal()" 
-                            style="display: inline-block; background: var(--gradient-primary); color: white; padding: 0.8rem 2rem; border-radius: 25px; text-decoration: none; font-weight: 600; transition: var(--transition);">
+                            style="display: inline-block; background: var(--gradient-primary); color: white; padding: 0.8rem 2rem; border-radius: 25px; cursor: None; text-decoration: none; font-weight: 600; transition: var(--transition);">
                                 <i class="fas fa-envelope" style="margin-right: 0.5rem;"></i>
                                 Get In Touch
                             </a>
@@ -689,5 +689,6 @@ window.addEventListener("scroll", () => {
         viewCounter.classList.remove("hide"); // always visible on desktop
     }
 });
+
 
 
